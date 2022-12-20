@@ -1,0 +1,25 @@
+@import "../../../styles/constans.scss";
+.button {
+  border: $brown_color 2px solid;
+  border-radius: 5px;
+  padding: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  background-color: $yellow_color;
+  > div {
+    width: 10px;
+    height: 10px;
+    border-radius: 100%;
+    background-color: $green_color;
+  }
+}
+
+.active {
+  border: red 2px solid;
+  background-color: white;
+  > div {
+    background-color: red;
+  }
+}

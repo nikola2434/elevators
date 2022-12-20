@@ -1,8 +1,29 @@
 import { FC } from "react";
+import { useAppSelector } from "../../../config/Hooks/useAppSelector";
+import { Elevator } from "./Elevator/Elevator";
+import { Head } from "./Head/Head";
 import style from "./Home.module.scss";
+import { Level } from "./Level/Level";
 
 const Home: FC = () => {
-  return <div>qwe</div>;
+  const { elevators, levels } = useAppSelector((state) => state.elevators);
+  return (
+    <div className={style.home}>
+      <Head />
+      <div className={style.container}>
+        <div className={style.elevators}>
+          {elevators.map((elevator) => (
+            <Elevator key={elevator._id} />
+          ))}
+        </div>
+        <div className={style.levels}>
+          {levels.map((level) => (
+            <Level key={level._id} />
+          ))}
+        </div>
+      </div>
+    </div>
+  );
 };
 
 export default Home;

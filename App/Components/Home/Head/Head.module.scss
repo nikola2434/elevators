@@ -1,0 +1,9 @@
+.head {
+  width: 600px;
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  > button {
+    margin-right: 15px;
+  }
+}

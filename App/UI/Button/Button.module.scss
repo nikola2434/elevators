@@ -1,0 +1,18 @@
+@import "../../../styles/constans.scss";
+.button {
+  border: 3px solid $brown_color;
+  outline: none;
+  color: $brown_color;
+  padding: 5px 10px;
+  cursor: pointer;
+  border-radius: 5px;
+  font-size: 18px;
+  font-family: $font-ubuntu;
+  font-weight: 700;
+  background-color: $yellow_color;
+  transition: all 0.3s linear;
+  &:hover {
+    color: $yellow_color;
+    background-color: $brown_color;
+  }
+}

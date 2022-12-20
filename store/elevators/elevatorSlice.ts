@@ -10,5 +10,24 @@ const initialState: IInitialStateElevator = {
 export const elevatorSlice = createSlice({
   name: "elevators",
   initialState,
-  reducers: {},
+  reducers: {
+    addLevel(state) {
+      state.levels.push({
+        _id: Math.random(),
+        countLevel: state.levels.length,
+        isActive: false,
+      });
+    },
+    addElevator(state) {
+      state.elevators.push({
+        _id: Math.random(),
+        currentLevel: state.elevators.length,
+        stack: [],
+        isResting: false,
+        isWorks: false,
+      });
+    },
+  },
 });
+
+export const { addElevator, addLevel } = elevatorSlice.actions;

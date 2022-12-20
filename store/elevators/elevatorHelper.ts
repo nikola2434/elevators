@@ -3,7 +3,13 @@ import { IElevator, ILevel } from "./../../config/Types";
 export const getInitialElevators = (initialCount: number = 1): IElevator[] => {
   const elevators: IElevator[] = [];
   for (let i = 0; i < initialCount; i++) {
-    elevators.push({ _id: Math.random(), currentLevel: 0, stack: [] });
+    elevators.push({
+      _id: Math.random(),
+      currentLevel: 0,
+      stack: [],
+      isResting: false,
+      isWorks: false,
+    });
   }
   return elevators;
 };
