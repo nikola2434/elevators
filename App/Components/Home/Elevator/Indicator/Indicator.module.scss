@@ -1,0 +1,22 @@
+@import "../../../../../styles/constans.scss";
+.indicator {
+  border-radius: 3px;
+  border: $brown_color 2px solid;
+  background-color: $yellow_color;
+  width: 40px;
+  height: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 20px;
+  .container_arrow {
+    color: $brown_color;
+    font-size: 20px;
+  }
+  .level {
+    color: $brown_color;
+    font-size: 20px;
+    font-weight: 700;
+    margin-right: 5px;
+  }
+}

@@ -13,12 +13,12 @@ const Home: FC = () => {
       <div className={style.container}>
         <div className={style.elevators}>
           {elevators.map((elevator) => (
-            <Elevator key={elevator._id} />
+            <Elevator key={elevator._id} elevator={elevator} />
           ))}
         </div>
         <div className={style.levels}>
           {levels.map((level) => (
-            <Level key={level._id} />
+            <Level key={level._id} level={level} />
           ))}
         </div>
       </div>

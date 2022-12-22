@@ -3,11 +3,10 @@ import { IElevator, ILevel } from "./../../config/Types";
 export const getInitialElevators = (initialCount: number = 1): IElevator[] => {
   const elevators: IElevator[] = [];
   for (let i = 0; i < initialCount; i++) {
-    elevators.push({
+    elevators.unshift({
       _id: Math.random(),
       currentLevel: 0,
       stack: [],
-      isResting: false,
       isWorks: false,
     });
   }
@@ -17,7 +16,7 @@ export const getInitialElevators = (initialCount: number = 1): IElevator[] => {
 export const getInitialLevels = (initialCount: number = 5): ILevel[] => {
   const levels: ILevel[] = [];
   for (let i = 0; i < initialCount; i++) {
-    levels.push({ _id: Math.random(), countLevel: i, isActive: false });
+    levels.unshift({ _id: Math.random(), countLevel: i, isActive: false });
   }
   return levels;
 };
