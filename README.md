@@ -1,34 +1,54 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
-## Getting Started
 
-First, run the development server:
+# Эмулятор лифта
 
-```bash
-npm run dev
-# or
-yarn dev
-```
+Требуется разработать одностраничное приложение (SPA), эмулирующее работу лифтовой системы.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Приложение должно состоять из схемы нескольких этажей с нумерацией и кнопками вызова, а также из самой шахты лифта с кабиной.
 
-You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
+Количество этажей по умолчанию: __5__
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
+Количество шахт лифта по умолчанию: __1__
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+По умолчанию лифт находится на 1 этаже в состоянии покоя (свободен).
 
-## Learn More
+При нажатии на кнопку вызова лифт должен обработать этот вызов в соответствии со следующими сценариями:
 
-To learn more about Next.js, take a look at the following resources:
+1. Если вызов осуществляется с этажа, на котором лифта нет – свободный лифт начинает движение к выбранному этажу со скоростью __1 этаж в секунду__.
+2. Достигнув нужного этажа лифт __3 секунды__ «отдыхает» - индикацию этого состояния можно реализовать с помощью мигания. После этого лифт снова переходит в состояние покоя и готов обработать следующий вызов.
+3. Если в момент движения лифта осуществить вызов на другой этаж – этот вызов должен добавиться в очередь вызовов. Вызовы должны обрабатываться последовательно.
+4. Вызов пропускается в случаях, если:
+   * лифт уже находится на выбранном этаже в состоянии покоя
+   * лифт уже находится в процессе обработки такого вызова (находится в движении к выбранному этажу)
+   * в очереди вызовов уже есть выбранный этаж
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Также необходимо реализовать дополнительную обвязку, состоящую из следующих задач:
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+1. Добавить табло индикации на кабину лифта, на котором в процессе движения будет отображаться направление движения и целевой этаж.
+2. Добавить индикацию кнопок вызова на этажах (например, смену цвета) в случае, если: 
+   * лифт уже находится в процессе обработки такого вызова (находится в движении к выбранному этажу)
+   * в очереди вызовов уже есть выбранный этаж
 
-## Deploy on Vercel
+****
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+### Иллюстрация работы приложения:
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+https://user-images.githubusercontent.com/112813407/209401334-5188b3e7-1345-412a-b05f-fdf891fd6fc7.mp4
+
+***
+
+### Расширенное задание:
+
+1. Спроектировать приложение таким образом, чтобы его было легко масштабировать (изменить количество этажей и лифтов). Предполагается наличие конфигурационных параметров, настраиваемых в одном месте (например, в отдельном файле или в корневом компоненте).
+2. При наличии двух и более свободных лифтов вызов должен обработать лифт, наиболее близко расположенный к целевому этажу.
+
+### Иллюстрация работы приложения (расширенная версия):
+
+https://user-images.githubusercontent.com/112813407/209401394-b46b1a18-cbf5-46a2-bb74-515f97842f4b.mp4
+
+Дизайн (стилистическое оформление) приложения остается на усмотрение
+разработчика.
+
+
+
+
