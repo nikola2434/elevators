@@ -7,7 +7,6 @@ import type { PayloadAction } from "@reduxjs/toolkit";
 const initialState: IInitialStateElevator = {
   elevators: getInitialElevators(),
   levels: getInitialLevels(),
-  
 };
 
 export const elevatorSlice = createSlice({
@@ -49,8 +48,9 @@ export const elevatorSlice = createSlice({
       const sortElevatorsLength = state.elevators.map((elevator) => elevator); // копия массива лифтов;
       sortElevatorsLength.sort((a, b) => a.stack.length - b.stack.length);
       if (
+        sortElevatorsLength.length >= 2 &&
         sortElevatorsLength[0].stack.length ===
-        sortElevatorsLength[1].stack.length
+          sortElevatorsLength[1].stack.length
       ) {
         sortElevatorsLength.sort(
           (a, b) =>
