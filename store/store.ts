@@ -1,10 +1,12 @@
-import { configureStore } from "@reduxjs/toolkit";
+import { configureStore, combineReducers } from "@reduxjs/toolkit";
 import { elevatorSlice } from "./elevators/elevatorSlice";
 
+const rootReducer = combineReducers({
+  elevators: elevatorSlice.reducer,
+});
+
 export const store = configureStore({
-  reducer: {
-    elevators: elevatorSlice.reducer,
-  },
+  reducer: rootReducer,
 });
 
 export type RootState = ReturnType<typeof store.getState>;

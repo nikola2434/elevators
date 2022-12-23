@@ -7,6 +7,7 @@ import type { PayloadAction } from "@reduxjs/toolkit";
 const initialState: IInitialStateElevator = {
   elevators: getInitialElevators(),
   levels: getInitialLevels(),
+  
 };
 
 export const elevatorSlice = createSlice({
@@ -47,7 +48,17 @@ export const elevatorSlice = createSlice({
       // если есть свободный лифт, то вызываем его
       const sortElevatorsLength = state.elevators.map((elevator) => elevator); // копия массива лифтов;
       sortElevatorsLength.sort((a, b) => a.stack.length - b.stack.length);
-      sortElevatorsLength[0].stack.unshift(action.payload.countLevel);
+      if (
+        sortElevatorsLength[0].stack.length ===
+        sortElevatorsLength[1].stack.length
+      ) {
+        sortElevatorsLength.sort(
+          (a, b) =>
+            Math.abs(a.currentLevel - action.payload.countLevel) -
+            Math.abs(b.currentLevel - action.payload.countLevel)
+        );
+        sortElevatorsLength[0].stack.unshift(action.payload.countLevel);
+      } else sortElevatorsLength[0].stack.unshift(action.payload.countLevel);
     },
 
     removeLevelStack(

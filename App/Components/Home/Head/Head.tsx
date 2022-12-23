@@ -9,6 +9,7 @@ import style from "./Head.module.scss";
 
 export const Head: FC = () => {
   const dispatch = useAppDispatch();
+
   return (
     <div className={style.head}>
       <Button onClick={() => dispatch(addLevel())}>Добавить этаж</Button>
