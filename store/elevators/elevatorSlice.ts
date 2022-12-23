@@ -14,7 +14,7 @@ export const elevatorSlice = createSlice({
   initialState,
   reducers: {
     addLevel(state) {
-      state.levels.push({
+      state.levels.unshift({
         _id: Math.random(),
         countLevel: state.levels.length,
         isActive: false,
@@ -23,7 +23,7 @@ export const elevatorSlice = createSlice({
     addElevator(state) {
       state.elevators.push({
         _id: Math.random(),
-        currentLevel: state.elevators.length,
+        currentLevel: 0,
         stack: [],
         isWorks: false,
       });
@@ -45,22 +45,9 @@ export const elevatorSlice = createSlice({
       if (level) level.isActive = true;
 
       // если есть свободный лифт, то вызываем его
-      const freeElevator = state.elevators.find(
-        (elevator) => elevator.stack.length === 0
-      );
-      if (freeElevator) {
-        freeElevator.stack.unshift(action.payload.countLevel);
-        return state;
-      }
-
-      // иначе ищем самый близко расположенный лифт и вызываем его
-      const elevatorsSort = state.elevators.sort(
-        (a, b) =>
-          a.currentLevel +
-          action.payload.countLevel -
-          (b.currentLevel + action.payload.countLevel) // пока так, но потом вернусь;)
-      );
-      elevatorsSort[0].stack.unshift(action.payload.countLevel);
+      const sortElevatorsLength = state.elevators.map((elevator) => elevator); // копия массива лифтов;
+      sortElevatorsLength.sort((a, b) => a.stack.length - b.stack.length);
+      sortElevatorsLength[0].stack.unshift(action.payload.countLevel);
     },
 
     removeLevelStack(
